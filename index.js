@@ -3,7 +3,7 @@ import cors from "cors"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 dotenv.config()
-import { nanoid } from "nanoid"
+import { v4 as uuidv4 } from "uuid"
 
 mongoose
   .connect(process.env.MONGODB_STRING)
@@ -31,7 +31,7 @@ app.get("/list", async (req, res) => {
 app.post("/list", async (req, res) => {
   const { list } = req.body
   const newCategory = new List({
-    _id: nanoid(),
+    _id: uuidv4(),
     list: list,
     done: false,
   })
